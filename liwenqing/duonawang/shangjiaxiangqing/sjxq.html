@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商家详情</title>
+		<script src="jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#div1{
+				height: 700px;
+				background: lemonchiffon;
+			}
+			.sjul{
+				height: 50px;
+				background: #8C8C8C;
+			}
+			.sjulFixed{
+				position: fixed;
+				top: 0;
+			}
+			.sjul li{
+				float: left;
+				list-style:none;
+				line-height: 30px;
+				padding: 10px;
+			}
+			.active{
+				background: pink;
+			}
+			/*.com{
+				height: 300px;
+			}*/
+			.one{
+				height: 900px;
+				background: goldenrod;
+			}
+			.two{
+				height: 500px;
+				background: green;
+			}
+			.three{
+				height: 600px;
+				background: sandybrown;
+			}
+			.four{
+				height: 800px;
+				background: darkcyan;
+			}
+			.five{
+				height: 300px;
+				background: lightslategrey;
+			}
+			p{
+				position: fixed;
+				background:#E12213 ;
+				color: white;
+				bottom: 50px;
+				right: 50px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">一般这里是有东西的</div>
+		<p id="pp">返回顶部</p>
+		<ul class="sjul">
+			<li>使用须知</li>
+			<li>代金劵详情</li>
+			<li>商家详情</li>
+			<li>商家环境</li>
+			<li>用户评论</li>
+		</ul>
+		<div class="one com">使用须知</div>
+		<div class="two com">代金劵详情</div>
+		<div class="three com">商家详情</div>
+		<div class="four com">商家环境</div>
+		<div class="five com">用户评论</div>
+		 	
+		<script type="text/javascript">
+			
+			$(document).scroll(function(){
+				//滚动条的高度
+				if($(window).scrollTop() >= 700){
+					$(".sjul").addClass("sjulFixed");
+					$("#pp").css("display","block");
+				}else{
+					$(".sjul").removeClass("sjulFixed");
+					$("#pp").css("display","none");
+				}
+				//window的高度
+				var w_h = $(window).height();
+				//中心分割线 加50是因为导航条的高度是50
+				var w_center = $(window).scrollTop()+50;
+				
+				for(var i=0;i<$(".com").length;i++){
+					//每一个div距离顶部的距离
+					var oTop = $(".com").eq(i).offset().top;
+					//每一个div的高度
+					var oHeight = $(".com").eq(i).height();
+					if(w_center >= oTop && w_center < oTop + oHeight){
+						$(".sjul li").eq(i).addClass("active");
+					}else{
+						$(".sjul li").eq(i).removeClass("active");
+					}
+				}
+				$(".sjul li").on("click",function(){
+					var index = $(this).index();
+					$("html,body").stop().animate({
+						scrollTop:$(".com").eq(index).offset().top
+					},300);
+				})
+				$("#pp").click(function(){
+					$("html,body").scrollTop("0");
+				})
+			
+			})
+		</script>
+	
+	</body>
+</html>

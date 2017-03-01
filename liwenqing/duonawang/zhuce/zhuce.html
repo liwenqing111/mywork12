@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>注册</title>
+	
+	<style type="text/css">
+		body{
+			background-image: url(img/demo1.png);
+			background-repeat: no-repeat;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#nav{
+			width: 100%;
+			height: 47px;
+			background: #e12213;
+		}
+		#nav ul {
+			position: absolute;
+			right: 47px;
+			top: 10px;
+		}
+		#nav ul li{
+			list-style: none;
+			float: left;
+			width: 105px;
+			height: 30px;
+		}
+		#nav ul li a{
+			text-decoration: none;
+			line-height: 30px;
+			text-align: center;
+			color: white;
+			font-weight: bold;
+			display: block;
+			width: 105px;
+			
+		}
+		/*#nav ul li a:hover{
+			color: black;
+		}*/
+		#nav .active{
+			background: white;
+			border-radius: 10px;
+		}
+		#nav .active a{
+			color: red;
+		}
+		#div1{
+			width: 413px;
+			height: 453px;
+			background-color: rgba(255,255,255,0.3);
+			margin-left: 700px;
+			margin-top: 50px;
+			border: 1px solid #ccc;
+			z-index: 0;
+		}
+		#div2{
+			margin-left: 41px;
+			margin-top: 58px;
+			position: relative;
+		}
+		#txt1,#txt3,#txt4{
+			width: 334px;
+			height: 32px;
+			z-index: 10;
+			margin-top: 15px;
+		}
+		#txt2{
+			width: 259px;
+			height: 32px;
+			margin-top: 15px;
+		}
+		#div2 p{
+			font-family:"微软雅黑";	
+			margin-top: 20px;
+		}
+		#div2 p a{
+			font-size: 13px;
+			color: #ff4965;
+		}
+		#btn{
+			width: 324px;
+			height: 30px;
+			background-color: #ff4965;
+			color: white;
+		}
+		#div3{
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			left: 268px;
+			top: 86px;
+			border: 1px solid #ff4965;
+			border-radius: 5px;
+			background-color: #ccc;
+			cursor: pointer;
+		}
+		#div3 span {
+			font-size: 14px;
+			margin-top: 7px;
+			float: left;
+			color: #FF4965;
+		}
+		#s,#s_1,#s_2{
+			font-size: 12px;
+			position: absolute;
+			left: 0px;
+			top: 70px;
+			color: green;
+			opacity: 0.5;
+			display: none;
+		}
+		#s1,#s1_1,#s1_2{
+			font-size: 12px;
+			position: absolute;
+			left: 0px;
+			top: 120px;
+			color: green;
+			opacity: 0.5;
+			display: none;
+		}
+		#s2,#s2_1,#s2_2{
+			font-size: 12px;
+			position: absolute;
+			left: 0px;
+			top: 170px;
+			color: green;
+			opacity: 0.5;
+			display: none;
+		}
+		#s3_2,#s3_1{
+			font-size: 12px;
+			position: absolute;
+			left: 0px;
+			top: 225px;
+			color:green;
+			opacity: 0.5;
+			display: none;
+		}
+	</style>
+	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		window.onload = function (){
+			
+			var oLi =$('#navul').getElementsByTagName('li');
+				
+				for (var i=0;i<oLi.length;i++) {
+					oLi[i].onmouseover = function (){
+						
+						
+						for (var i=0;i<oLi.length;i++) {
+							oLi[i].className= ''
+						}
+						this.className = 'active'
+					}
+				}
+			
+			var oDiv = document.getElementById("div2");
+			var oTxt1 = document.getElementById("txt1");
+			var oTxt2 = document.getElementById("txt2");
+			var oTxt3 = document.getElementById("txt3");
+			var oTxt4 = document.getElementById("txt4");
+			var oS_2 = document.getElementById("s_2");
+			var oS = document.getElementById("s");
+			var oS_1 = document.getElementById("s_1");
+			
+			var oS1_2 = document.getElementById("s1_2");
+			var oS1 = document.getElementById("s1");
+			var oS1_1 = document.getElementById("s1_1");
+			
+			var oS2_2 = document.getElementById("s2_2");
+			var oS2 = document.getElementById("s2");
+			var oS2_1 = document.getElementById("s2_1");
+			
+			var oS3_2 = document.getElementById("s3_2");
+			var oS3_1 = document.getElementById("s3_1");
+			oTxt1.onfocus= function(){
+				oS.style.display = 'none'
+				oS_1.style.display = 'none'
+				oS_2.style.display = 'none'
+			}
+			oTxt1.onblur=function(){
+				var oReg = /^\w+@[a-z0-9]+\.[a-z]+$/i;
+				//var oReg = /^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/;
+				if(oReg.test(oTxt1.value)){
+						oS_2.style.display='block'
+					}else if(oTxt1.value=='') {
+						oS.style.display='block'
+					}else{
+						oS_1.style.display='block'
+					}
+			}
+			oTxt2.onfocus= function(){
+				oS1.style.display = 'none'
+				oS1_1.style.display = 'none'
+				oS1_2.style.display = 'none'
+			}
+			oTxt2.onblur=function(){
+				var oReg2 = /\d{6}/i;
+				if(oReg2.test(oTxt2.value)){
+						oS1_2.style.display='block'
+					}else if(oTxt2.value=='') {
+						oS1.style.display='block'
+					}else{
+						oS1_1.style.display='block'
+					}
+			}
+			oTxt3.onfocus= function(){
+				oS2.style.display = 'none'
+				oS2_1.style.display = 'none'
+				oS2_2.style.display = 'none'
+			}
+			oTxt3.onblur=function(){
+				var oReg3 = /^\w{6,16}$/i;
+				if(oReg3.test(oTxt3.value)){
+						oS2_2.style.display='block'
+					}else if(oTxt3.value=='') {
+						oS2.style.display='block'
+					}else{
+						oS2_1.style.display='block'
+					}
+			}
+			oTxt4.onfocus= function(){
+				oS3_1.style.display = 'none'
+				oS3_2.style.display = 'none'
+			}
+			oTxt4.onblur=function(){
+				
+				if((oTxt4.value==oTxt3.value)&&oTxt3.value!=''){
+						oS3_2.style.display='block'
+					}
+					else{
+						oS3_1.style.display='block'
+					}
+			}
+			
+		}
+	</script>
+    </head>
+	<body>
+		<div id="nav">
+			<ul id="navul">
+				<li class="active"><a href="javascript:;">注册</a></li>
+				<li><a href="javascript:;">登录</a></li>
+				<li><a href="javascript:;">购物车</a></li>
+				<li><a href="../index.html">返回首页</a></li>
+			</ul>
+		</div>
+		<div id="div1">
+			<div id="div2">
+				<h4>新用户注册，欢迎加入</h4>
+				<input type="text" name="txt1" id="txt1" value="" placeholder="你的手机号/邮箱号"/>
+				<span id="s">手机号/邮箱号不能为空~</span>
+				<span id="s_1">您输入有误</span>
+				<span id="s_2">恭喜您，输入正确</span>
+				<input type="text" name="txt1" id="txt2" value="" placeholder="请输入6位短信校验码"/>
+				<div id="div3">
+					<span>免费获取校验码</span>
+				</div>
+				<span id="s1">验证码不能为空~</span>
+				<span id="s1_1">请输入正确的验证码</span>
+				<span id="s1_2">验证码输入正确</span>
+				<input type="text" name="txt1" id="txt3" value="" placeholder="密码：6-16位字母、数字或字符"/>
+				<span id="s2">密码不能为空~</span>
+				<span id="s2_1">请输入正确的密码</span>
+				<span id="s2_2">您已输入密码</span>
+				
+				<input type="text" name="txt1" id="txt4" value="" placeholder="确认密码"/>
+				<span id="s3_1">请保持两次输入密码一致</span>
+				<span id="s3_2">两次输入密码一致</span>
+				<p>注册即接受<a href="">《多拿使用协议》</a>和<a href="">《社区使用协议》</a></p>
+				<input type="button" name="btn" id="btn" value="注册" />
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

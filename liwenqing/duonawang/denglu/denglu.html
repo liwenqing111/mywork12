@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/denglu.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+			    
+				var oLi =$('#navul').getElementsByTagName('li');
+				
+				for (var i=0;i<oLi.length;i++) {
+					oLi[i].onmouseover = function (){
+						
+						
+						for (var i=0;i<oLi.length;i++) {
+							oLi[i].className= ''
+						}
+						this.className = 'active'
+					}
+				}
+				var code ; //在全局 定义验证码  
+				function createCode()  
+				     {   
+				       code = "";  
+				       var codeLength = 6;//验证码的长度  
+				       var checkCode = $("#checkCode");  
+				       var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');//所有候选组成验证码的字符，当然也可以用中文的  
+				          
+				       for(var i=0;i<codeLength;i++)  
+				       {  
+				        
+				          
+				       var charIndex = Math.floor(Math.random()*36);  
+				       code +=selectChar[charIndex];  
+				         
+				         
+				       }  
+				//       alert(code);  
+				       if(checkCode) //这里不是很懂,有高手可以解释下  
+				       {  
+				         //checkCode.className="code";  
+				         checkCode.value = code;  
+				       }   
+				       }  
+				      createCode();
+				     $("#checkCode").onclick =function(){
+				     	createCode();
+				     }
+				     $("#yzm").onblur = function (){
+				      	 var inputvalue= $("#yzm").value.toUpperCase();
+				     if (inputvalue != code) {
+				     	 $("#ts4").innerHTML='验证码输入错误'
+				     }else{
+				     	$("#ts4").innerHTML='恭喜您，验证码输入正确!'
+				     }
+				      }
+				    $("#btn").onclick = function(){
+				    	if ($("#cbx").checked == true) {
+				    		setCook('accnum',$("#uesername").value,5);
+				    		setCook('pwd',$("#pwd").value,5);
+				    	} 
+				    	
+				    }
+				    var oP = document.createElement('p');
+			    	oP.innerHTML = getCook('accnum');
+			    	$("#cook").appendChild(oP);
+				    $("#uesername").onfocus=function(){
+				    	$("#cook").style.display='block';
+				    }
+				    
+				    	$("#uesername").onblur = function(){
+				    	setTimeout(function(){
+				    		$("#cook").style.display='none';
+				    	},200)
+				    }
+				   
+				     
+				     oP.onmouseover = function(){
+				     	this.className='op'
+				     }
+				     oP.onmouseout = function(){
+				     	this.className=''
+				     }
+				     oP.onclick=function(){
+				     	
+		     			 $("#uesername").value=this.innerHTML;
+		     			 if ($("#uesername").value ==getCook('accnum')) {
+		     			     $("#pwd").value=getCook('pwd');
+		     		     }
+				         $("#cook").style.display='none';
+				     }
+				     		
+//				function validate ()  
+//				     {  
+//				       var inputCode = document.getElementById("input1").value;  
+//				       if(inputCode.length <=0)  
+//				       {  
+//				           alert("请输入验证码！");  
+//				           document.getElementById("input1").focus();  
+//				       }  
+//				       else if(inputCode != code )  
+//				       {  
+//				          alert("验证码输入错误！");  
+//				          createCode();//刷新验证码  
+//				          inputCode = "";  
+//				          document.getElementById("input1").focus();  
+//				       }else{  
+//				            document.frmRegister.submit();  
+//				       }  
+//				         
+//				         
+//				       }  
+
+			}
+		</script>
+	</head>
+	<body>
+		<div id="all">
+			<div id="nav">
+				<ul id="navul">
+					<li><a href="javascript:;">注册</a></li>
+					<li class="active"><a href="javascript:;">登录</a></li>
+					<li><a href="javascript:;">购物车</a></li>
+					<li><a href="../index.html">返回首页</a></li>
+				</ul>
+			</div>
+			<div id="content">
+				<img class="img1" src="img/logo_login.png"/>
+				<h1>多拿网炫酷改版</h3>
+					<dl>
+						<dt><img src="img/1.png" align="absmiddle"/>&nbsp;&nbsp;全场九毛九</dt>
+						<dd>全场代金券一律九毛九，优惠大酬宾</dd>
+						<dt><img src="img/1.png" align="absmiddle"/>&nbsp;&nbsp;线下消费返利</dt>
+						<dd>线下消费，立即返利，实惠到家</dd>
+						<dt><img src="img/1.png" align="absmiddle"/>&nbsp;&nbsp;非消费返利</dt>
+						<dd>邀请好友、做任务轻松获得免单消费</dd>
+					</dl>
+					<div id="login">
+						<span id="title">会员登录</span>
+						<span id="ts1">请填写邮箱/手机</span>
+						<span id="ts2">忘记密码？</span>
+						<span id="ts3">请输入6-20位的密码</span>
+						<span id="ts4">请输入验证码</span>
+						<div id="login1">
+							<label for="uesername">账号：</label>
+							<input type="text" name="uesername" id="uesername" value="" placeholder="请填写邮箱/手机号" />
+							<br />
+							<label for="pwd">密码：</label>
+							<input type="password" name="pwd" id="pwd" value="" placeholder="密码"/>
+							<br />
+							<label for="yzm" style="margin-left: -16px;">验证码：</label>
+							<input type="text" name="yzm" id="yzm" value="" placeholder="请填写验证码"/>
+							<input type="text" name="checkCode" id="checkCode" value="" readonly="readonly"/>
+						</div>
+						<div id="login2">
+							<input type="checkbox" name="cbx" id="cbx" value="" />
+							<label for="cbx">记住我的账号</label>
+							<a href="javascript:;">免费注册</a>
+						</div>
+						<input type="button" name="btn" id="btn" value="登录" />
+						<div id="cook">
+							
+						</div>
+					</div>
+					<img class="img2" src="img/xiaohouzi.png"/>
+					
+			</div>
+			<div id="hong">
+				
+			</div>
+		</div>
+	</body>
+</html>

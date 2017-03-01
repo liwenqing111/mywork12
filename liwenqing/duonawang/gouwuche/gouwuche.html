@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<link rel="stylesheet" type="text/css" href="style/style.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function (){
+			
+			var oLi =$('#navul').getElementsByTagName('li');
+				
+				for (var i=0;i<oLi.length;i++) {
+					oLi[i].onmouseover = function (){
+						for (var i=0;i<oLi.length;i++) {
+							oLi[i].className= ''
+						}
+						this.className = 'active'
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="all">
+			<div id="nav">
+				<ul id="navul">
+					<li><a href="javascript:;">注册</a></li>
+					<li><a href="javascript:;">登录</a></li>
+					<li  class="active"><a href="javascript:;">购物车</a></li>
+					<li><a href="../index.html">返回首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

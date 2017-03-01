@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/copy denglu.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+			    $("#uesername").blur(function(){
+			    	var textthis = $("#uesername").val();
+			    	var phone = /^(13[0-9]|14[57]|15[0123456789]|17[678]|18[0-9])[0-9]{8}$/;
+			    	var email = /^(\w-*\.*)+@(\w-?)+(\.\w{2,3})+$/;
+			    	if(phone.test(textthis)){
+			    		$("#ts1").html("恭喜你输入正确");
+			    		$("#ts1").css("display","block");
+			    		$("#ts1").addClass("add1");
+			    	}else if(email.test(textthis)){
+			    		$("#ts1").html("恭喜你输入正确");
+			    		$("#ts1").css("display","block");
+			    		$("#ts1").addClass("add1");
+			    	}else if(textthis == ""){
+			    		$("#ts1").removeClass();
+			    		$("#ts1").css("display","block");
+			    		$("#ts1").addClass("add");
+			    	}else{
+			    		$("#ts1").removeClass();
+			    		$("#ts1").html("请您输入正确的手机号或邮箱号");
+			    		$("#ts1").css("display","block");
+			    		$("#ts1").addClass("add");
+			    	}
+			    })	
+			    $("#pwd").blur(function(){
+			    	var textthis = $("#pwd").val();
+			    	if(textthis.length > 5){
+			    		$("#ts3").html("恭喜你输入正确");
+			    		$("#ts3").css("display","block");
+			    		$("#ts3").addClass("add1");
+			    	}else if(textthis.length == ""){
+			    		$("#ts3").removeClass();
+			    		$("#ts3").css("display","block");
+			    		$("#ts3").addClass("add");
+			    	}else{
+			    		$("#ts3").removeClass();
+			    		$("#ts3").html("请您输入正确格式的密码");
+			    		$("#ts3").css("display","block");
+			    		$("#ts3").addClass("add");
+			    	}
+			    })
+			    $("#btn").click(function(){
+			    	if(!$("#uesername").val()||!$("#pwd").val()){
+			    		alert("请完善信息");
+			    	}else{
+			    		$.ajax({
+			    			url:"password.json",
+			    			type:"get",
+			    			dataType:"json",
+			    			data:{"name":$("#uesername").val(),"password":$("#pwd").val()},
+			    			success:function(data){
+//			    				console.log(data);
+			    				if($("#uesername").val() == data.name && $("#pwd").val() == data.password ){
+			    					location.href = "../index.html?name="+data.name;
+			    				}else{
+			    					alert("账号或密码错误");
+			    				}
+			    			}
+			    		})
+			    	}
+			    })
+
+			}
+		</script>
+	</head>
+	<body>
+		<div id="all">
+			<div id="nav">
+				<ul id="navul">
+					<li><a href="javascript:;">注册</a></li>
+					<li class="active"><a href="javascript:;">登录</a></li>
+					<li><a href="javascript:;">购物车</a></li>
+					<li><a href="../index.html">返回首页</a></li>
+				</ul>
+			</div>
+			<div id="content">
+				<img class="img1" src="img/logo_login.png"/>
+				<h1>多拿网炫酷改版</h3>
+					<dl>
+						<dt><img src="img/1.png" align="absmiddle"/>&nbsp;&nbsp;全场九毛九</dt>
+						<dd>全场代金券一律九毛九，优惠大酬宾</dd>
+						<dt><img src="img/1.png" align="absmiddle"/>&nbsp;&nbsp;线下消费返利</dt>
+						<dd>线下消费，立即返利，实惠到家</dd>
+						<dt><img src="img/1.png" align="absmiddle"/>&nbsp;&nbsp;非消费返利</dt>
+						<dd>邀请好友、做任务轻松获得免单消费</dd>
+					</dl>
+					<div id="login">
+						<span id="title">会员登录</span>
+						<span id="ts1">请填写邮箱/手机</span>
+						<span id="ts2">忘记密码？</span>
+						<span id="ts3">请输入6-20位的密码</span>
+						<span id="ts4">请输入验证码</span>
+						<div id="login1">
+							<label for="uesername">账号：</label>
+							<input type="text" name="uesername" id="uesername" value="" placeholder="请填写邮箱/手机号" />
+							<br />
+							<label for="pwd">密码：</label>
+							<input type="password" name="pwd" id="pwd" value="" placeholder="密码"/>
+							<br />
+							<label for="yzm" style="margin-left: -16px;">验证码：</label>
+							<input type="text" name="yzm" id="yzm" value="" placeholder="请填写验证码"/>
+							<input type="text" name="checkCode" id="checkCode" value="" readonly="readonly"/>
+						</div>
+						<div id="login2">
+							<input type="checkbox" name="cbx" id="cbx" value="" />
+							<label for="cbx">记住我的账号</label>
+							<a href="javascript:;">免费注册</a>
+						</div>
+						<input type="button" name="btn" id="btn" value="登录" />
+						<div id="cook">
+							
+						</div>
+					</div>
+					<img class="img2" src="img/xiaohouzi.png"/>
+					
+			</div>
+			<div id="hong"></div>
+		</div>
+	</body>
+</html>
